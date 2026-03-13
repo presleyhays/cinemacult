@@ -1,0 +1,304 @@
+/* ================================
+   Last edited 3/9/2026
+================================ */
+
+/* ================================
+   GLOBAL VARIABLES
+================================ */
+:root {
+    /* Brand colors */
+    --color-bg-dark: rgb(43, 66, 62);
+    --color-bg-light: rgb(192, 153,101);
+    --color-bg-main: rgb(13,29, 30);
+    --color-bg-about: rgb(171, 210, 188);
+    --color-bg-projects: rgb(11,28,29);
+
+    /* Text colors */
+    --color-text-light: rgb(238, 235,192);
+    --color-text-dark: rgb(11,28,29);
+    --color-accent: rgb(180, 50, 50);
+
+    /*Fonts*/
+    --font-main: "Vintage Machine", sans-serif;
+    --font-title: "Swamp Witch", sans-serif;
+    --font-tagline: "Melted Monster", sans-serif;
+
+    /*Spacing + layout */
+    --radius: 8px;
+    --section-gap: 40px;
+    --gap: 20px;
+}
+
+/* ================================
+   BASE ELEMENTS
+================================ */
+html{
+    background: rgb(43,66,62);
+    height: 100%;
+    margin: 0;
+}
+body{
+    font-family: "Vintage Machine", sans-serif;
+    display: grid;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer";
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh; /*full screen height*/
+    margin: 0;
+}
+
+/* ================================
+   HEADER
+================================ */
+header {
+    grid-area: header;
+    background-color: var(--color-bg-light);
+    color: var(--color-bg-dark);
+    padding: var(--gap);
+    text-align: center;
+}
+.header-brand{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.header-logo{
+    width: 300px;
+    height: auto;
+}
+
+/* ================================
+   FONTS
+================================ */
+@font-face {
+    font-family: "Vintage Machine";
+    src: url("../fonts/VintageMachine.otf") format("opentype");
+}
+
+@font-face{
+    font-family: "Swamp Witch";
+    src: url("../fonts/SwampWitch.ttf") format("truetype");
+}
+
+@font-face{
+    font-family: "Melted Monster";
+    src: url("../fonts/MeltedMonster.ttf") format("truetype");
+}
+
+/* ================================
+   MAIN CONTENT
+================================ */
+main{
+    grid-area: main;
+    background-color: vars(--color-bg-main);
+    color: vars(--color-text-light);
+    padding: vars(--gap);
+}
+
+.grid-container{
+    display: grid;
+    grid-template-areas:
+     "about"
+     "history"
+     "movies"
+     "projects";
+    gap: var(--section-gap);
+}
+
+section > h2{
+    text-align: left;
+    font-size: 2rem;
+    margin-bottom: var(--gap);
+    grid-column: 1/-1;
+}
+
+/* ================================
+   ABOUT SECTION
+================================ */
+.about{
+    grid-area: about;
+    background-color: var(--color-bg-about);
+    color: var(--color-text-dark)
+}
+.about-content {
+    display:flex;
+    align-items: flex-start;
+    gap: var(--gap);
+}
+.about-img {
+    width: 300px;
+    height: auto;
+    border-radius: var(--radus);
+}
+
+.about-text {
+    flex: 1;
+}
+
+/* ================================
+   HISTORY SECTION
+================================ */
+.history{
+    grid-area: history;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+}
+
+/* ================================
+   MOVIES SECTION
+================================ */
+.movies {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    justify-content: center;
+}
+
+.movie {
+    width: 100%;
+    text-align: center;
+}
+
+.movie img {
+    width: clamp(200px, 20vw, 350px);
+    aspect-ratio: 2/3;
+    object-fit: contain;
+    border-radius: var(--radius);
+}
+
+.movie a {
+    color: var(--color-text-light);
+    text-decoration: underline;
+    margin-top: 6px;
+    display: inline-block;
+}
+
+
+/* ================================
+   PROJECTS SECTION
+================================ */
+.projects{
+    grid-area: projects;
+    background-color: var(--color-bg-projects);
+    color: var(--color-bg-light);
+}
+
+/* ================================
+   FOOTER
+================================ */
+footer{ 
+    grid-area: footer;
+    background-color: var(--color-bg-dark);
+    color:rgb(112,152,129);
+    padding: 10px;
+    text-align: center;
+    margin-top: var(--section-gap);
+}
+.footer-logo{
+    width: 100px;
+    height:auto;
+}
+
+footer a {
+    color: var(--color-text-light);
+}
+
+/* ================================
+   NAVIGATION MENU
+================================ */
+.hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 32px;
+    cursor: pointer;
+    color: var(--color-bg-dark);
+    z-index: 1001;
+}
+.nav-toggle{
+    display: none;
+}
+.nav-menu {
+    position: fixed;
+    top: 0;
+    right: -260px;
+    width: 240px;
+    height: 100vh;
+    background-color: var(--color-bg-light);
+    padding-top: 80px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    padding-left: var(--gap);
+    transition: right 0.3s ease;
+    z-index: 1000;
+}
+.nav-menu a{
+    color: var(--color-bg-dark);
+    font-size: 20px;
+    text-decoration: none;
+}
+.nav-toggle:checked ~ .nav-menu {
+    right: 0;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 900; /* behind menu, above page */
+}
+.nav-toggle:checked ~ .overlay {
+    display: block;
+}
+
+/* ================================
+   LIZARD TITLE BLOCK
+================================ */
+.lizard-title {
+    font-family: var(--font-title);
+    color: var(--color-accent);
+    font-size: 5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.lizard-block >*{
+    margin:4px 0;
+}
+.lizard-tagline {
+    text-align: center;
+    margin: 4px 0;
+    font-family: var(--font-tagline);
+    font-size: 2.5rem;
+}
+
+/* ================================
+   FLOATING IMAGE
+================================ */
+.float-img{
+    width: 35%;
+    min-width: 250px;
+    max-width: 400px;
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+@media (max-width: 700px){
+    .about-content{
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-img{
+        width: 80%;
+        margin: 0 auto 20px auto;
+    }
+}
+
