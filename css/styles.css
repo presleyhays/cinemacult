@@ -94,9 +94,9 @@ header {
 ================================ */
 main{
     grid-area: main;
-    background-color: vars(--color-bg-main);
-    color: vars(--color-text-light);
-    padding: vars(--gap);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-light);
+    padding: var(--gap);
 }
 
 .grid-container{
@@ -132,7 +132,7 @@ section > h2{
 .about-img {
     width: 300px;
     height: auto;
-    border-radius: var(--radus);
+    border-radius: var(--radius);
 }
 
 .about-text {
@@ -286,6 +286,8 @@ footer a {
     width: 35%;
     min-width: 250px;
     max-width: 400px;
+    height: auto;
+    border-radius: var(--radius);
 }
 
 /* ================================
